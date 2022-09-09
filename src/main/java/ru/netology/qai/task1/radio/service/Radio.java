@@ -16,33 +16,58 @@ public class Radio {
         return currentVolume;
     }
 
+    public int setCurrentValue(int newCurrentValue, int currentValue, int maxValue, int minValue) {
+        if (newCurrentValue < minValue) {
+            return currentValue;
+        }
+
+        if (newCurrentValue > maxValue) {
+            return currentValue;
+        }
+        return newCurrentValue;
+    }
+
+    public int setLowerValue(int currentValue, int maxValue, int minValue) {
+        if (currentValue > minValue) {
+            currentValue = currentValue - 1;
+        }
+        if (currentValue == minValue) {
+            currentValue = maxValue;
+        }
+        return currentValue;
+    }
+
+    public int setIncreaseValue(int currentValue, int maxValue, int minValue) {
+        if (currentValue < maxValue) {
+            currentValue = currentValue + 1;
+        }
+        if (currentValue == maxValue) {
+            currentValue = minValue;
+        }
+        return currentValue;
+    }
+
     public void setCurrentStation(int newCurrentStation) {
-        SetCurrentValue newStation = new SetCurrentValue();
-        currentStation = newStation.setCurrentValue(newCurrentStation, currentStation, maxStation, minStation);
+        currentStation = setCurrentValue(newCurrentStation, currentStation, maxStation, minStation);
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        SetCurrentValue newVolume = new SetCurrentValue();
-        currentVolume = newVolume.setCurrentValue(newCurrentVolume, currentVolume, maxVolume, minVolume);
+        currentVolume = setCurrentValue(newCurrentVolume, currentVolume, maxVolume, minVolume);
     }
 
     public void setLowerStation() {
-        LowerValue next = new LowerValue();
-        currentStation = next.setLowerValue(currentStation, maxStation, minStation);
+        currentStation = setLowerValue(currentStation, maxStation, minStation);
     }
 
     public void setLowerVolume() {
-        LowerValue prev = new LowerValue();
-        currentVolume = prev.setLowerValue(currentVolume, maxVolume, minVolume);
+        currentVolume = setLowerValue(currentVolume, maxVolume, minVolume);
     }
 
     public void setIncreaseStation() {
-        IncreaseValue next = new IncreaseValue();
-        currentStation = next.setIncreaseValue(currentStation, maxStation, minStation);
+        currentStation = setIncreaseValue(currentStation, maxStation, minStation);
     }
 
     public void setIncreaseVolume() {
-        IncreaseValue next = new IncreaseValue();
-        currentVolume = next.setIncreaseValue(currentVolume, maxVolume, minVolume);
+        currentVolume = setIncreaseValue(currentVolume, maxVolume, minVolume);
     }
 }
