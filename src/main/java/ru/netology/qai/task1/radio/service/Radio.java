@@ -1,9 +1,9 @@
 package ru.netology.qai.task1.radio.service;
 
 public class Radio {
-    int currentStation;
-    int maxStation = 9;
-    int minStation = 0;
+    private int currentStation;
+    private int maxStation = 9;
+    private int minStation = 0;
     private int currentVolume;
     private int maxVolume = 10;
     private int minVolume = 0;
@@ -16,58 +16,61 @@ public class Radio {
         return currentVolume;
     }
 
-    public int setCurrentValue(int newCurrentValue, int currentValue, int maxValue, int minValue) {
-        if (newCurrentValue < minValue) {
-            return currentValue;
-        }
-
-        if (newCurrentValue > maxValue) {
-            return currentValue;
-        }
-        return newCurrentValue;
-    }
-
-    public int setLowerValue(int currentValue, int maxValue, int minValue) {
-        if (currentValue > minValue) {
-            currentValue = currentValue - 1;
-        }
-        if (currentValue == minValue) {
-            currentValue = maxValue;
-        }
-        return currentValue;
-    }
-
-    public int setIncreaseValue(int currentValue, int maxValue, int minValue) {
-        if (currentValue < maxValue) {
-            currentValue = currentValue + 1;
-        }
-        if (currentValue == maxValue) {
-            currentValue = minValue;
-        }
-        return currentValue;
-    }
-
     public void setCurrentStation(int newCurrentStation) {
-        currentStation = setCurrentValue(newCurrentStation, currentStation, maxStation, minStation);
+        if (newCurrentStation < minStation) {
+            return;
+        }
+
+        if (newCurrentStation > maxStation) {
+            return;
+        }
+        currentStation = newCurrentStation;
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        currentVolume = setCurrentValue(newCurrentVolume, currentVolume, maxVolume, minVolume);
+        if (newCurrentVolume < minVolume) {
+            return;
+        }
+
+        if (newCurrentVolume > maxVolume) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
     }
 
     public void setLowerStation() {
-        currentStation = setLowerValue(currentStation, maxStation, minStation);
+        if (currentStation > minStation) {
+            currentStation = currentStation - 1;
+        }
+        if (currentStation == minStation) {
+            currentStation = maxStation;
+        }
     }
 
     public void setLowerVolume() {
-        currentVolume = setLowerValue(currentVolume, maxVolume, minVolume);
+        if (currentVolume > minVolume) {
+            currentVolume = currentVolume - 1;
+        }
+        if (currentVolume == minVolume) {
+            currentVolume = maxVolume;
+        }
     }
 
     public void setIncreaseStation() {
-        currentStation = setIncreaseValue(currentStation, maxStation, minStation);
+        if (currentStation < maxStation) {
+            currentStation = currentStation + 1;
+        }
+        if (currentStation == maxStation) {
+            currentStation = minStation;
+        }
     }
 
     public void setIncreaseVolume() {
-        currentVolume = setIncreaseValue(currentVolume, maxVolume, minVolume);
+        if (currentVolume < maxVolume) {
+            currentVolume = currentVolume + 1;
+        }
+        if (currentVolume == maxVolume) {
+            currentVolume = minVolume;
+        }
     }
 }
