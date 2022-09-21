@@ -1,12 +1,19 @@
 package ru.netology.qai.task1.radio.service;
 
 public class Radio {
-    int currentStation;
-    int maxStation = 9;
-    int minStation = 0;
+    private int minStation = 0;
+    private int countStation = 10;
+    private int maxStation = minStation + countStation - 1;
+    private int currentStation = minStation;
     private int currentVolume;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
+
+    public Radio() {    }
+    public Radio(int countStation) {
+        this.countStation = countStation;
+        this.maxStation = minStation + countStation - 1;
+    }
 
     public int getCurrentStation() {
         return currentStation;
@@ -16,33 +23,65 @@ public class Radio {
         return currentVolume;
     }
 
+    public int getMaxStation() {
+        return maxStation;
+    }
+
     public void setCurrentStation(int newCurrentStation) {
-        SetCurrentValue newStation = new SetCurrentValue();
-        currentStation = newStation.setCurrentValue(newCurrentStation, currentStation, maxStation, minStation);
+        if (newCurrentStation < minStation) {
+            return;
+        }
+
+        if (newCurrentStation > maxStation) {
+            return;
+        }
+        currentStation = newCurrentStation;
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        SetCurrentValue newVolume = new SetCurrentValue();
-        currentVolume = newVolume.setCurrentValue(newCurrentVolume, currentVolume, maxVolume, minVolume);
+        if (newCurrentVolume < minVolume) {
+            return;
+        }
+
+        if (newCurrentVolume > maxVolume) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
     }
 
     public void setLowerStation() {
-        LowerValue next = new LowerValue();
-        currentStation = next.setLowerValue(currentStation, maxStation, minStation);
+        if (currentStation > minStation) {
+            currentStation = currentStation - 1;
+        }
+        if (currentStation == minStation) {
+            currentStation = maxStation;
+        }
     }
 
     public void setLowerVolume() {
-        LowerValue prev = new LowerValue();
-        currentVolume = prev.setLowerValue(currentVolume, maxVolume, minVolume);
+        if (currentVolume > minVolume) {
+            currentVolume = currentVolume - 1;
+        }
+        if (currentVolume == minVolume) {
+            return;
+        }
     }
 
     public void setIncreaseStation() {
-        IncreaseValue next = new IncreaseValue();
-        currentStation = next.setIncreaseValue(currentStation, maxStation, minStation);
+        if (currentStation < maxStation) {
+            currentStation = currentStation + 1;
+        }
+        if (currentStation == maxStation) {
+            currentStation = minStation;
+        }
     }
 
     public void setIncreaseVolume() {
-        IncreaseValue next = new IncreaseValue();
-        currentVolume = next.setIncreaseValue(currentVolume, maxVolume, minVolume);
+        if (currentVolume < maxVolume) {
+            currentVolume = currentVolume + 1;
+        }
+        if (currentVolume == maxVolume) {
+            return;
+        }
     }
 }
