@@ -1,5 +1,12 @@
 package ru.netology.qai.task1.radio.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Radio {
     private int minStation = 0;
     private int countStation = 10;
@@ -9,7 +16,7 @@ public class Radio {
     private int maxVolume = 100;
     private int minVolume = 0;
 
-    public Radio() {    }
+
     public Radio(int countStation) {
         this.countStation = countStation;
         this.maxStation = minStation + countStation - 1;
