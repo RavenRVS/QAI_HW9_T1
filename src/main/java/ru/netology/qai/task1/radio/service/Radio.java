@@ -38,10 +38,10 @@ public class Radio {
         currentVolume = newCurrentVolume;
     }
 
-    public void setLowerStation() {
+    public void setPrevStation() {
         if (currentStation > minStation) {
             currentStation = currentStation - 1;
-        }
+        } else
         if (currentStation == minStation) {
             currentStation = maxStation;
         }
@@ -51,15 +51,12 @@ public class Radio {
         if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
-        if (currentVolume == minVolume) {
-            currentVolume = maxVolume;
-        }
     }
 
-    public void setIncreaseStation() {
+    public void setNextStation() {
         if (currentStation < maxStation) {
             currentStation = currentStation + 1;
-        }
+        } else
         if (currentStation == maxStation) {
             currentStation = minStation;
         }
@@ -68,9 +65,6 @@ public class Radio {
     public void setIncreaseVolume() {
         if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
-        }
-        if (currentVolume == maxVolume) {
-            currentVolume = minVolume;
         }
     }
 }
