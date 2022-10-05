@@ -79,7 +79,7 @@ public class RadioStationTest {
     }
 
     @Test
-    public void shouldNextUpperMaxStation() {
+    public void shouldNextEqualsMaxStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(9);
 
@@ -105,7 +105,7 @@ public class RadioStationTest {
     }
 
     @Test
-    public void shouldNextLowerMaxStation() {
+    public void shouldPrevEqualsMinStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(0);
 
